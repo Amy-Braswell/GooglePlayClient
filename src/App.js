@@ -8,10 +8,17 @@ class App extends Component {
     super(props);
     this.state = {
       apps: [],
+      genres: [],
       search: '',
       sort: '',
       error: null
     }
+  }
+
+  setGenres(genres) {
+    this.setState({
+      genres
+    });
   }
 
   setSearch(search) {
@@ -30,6 +37,9 @@ class App extends Component {
     e.preventDefault();
     const baseUrl = 'http://localhost:8000/apps';
     const params = [];
+    if(this.state.genres) {
+      params.push(`genre=${this.state.genres}`);
+    }
     if(this.state.search) {
       params.push(`search=${this.state.search}`);
     }
@@ -70,13 +80,29 @@ class App extends Component {
         <h1>Google Play Apps</h1>
         <div className="search">
           <form onSubmit={e => this.handleSubmit(e)}>
-            <label htmlFor="search">Search: </label>
+            <label htmlFor="search">Search by Keyword: </label>
             <input 
               type="text" 
               id="search" 
               name="search" 
               value={this.state.search}
-              onChange={e => this.setSearch(e.target.value)}/>
+              onChange={e => this.setSearch(e.target.value)}
+            />
+
+            <br/>
+
+            <label htmlFor="genre">Search by Genre: </label>
+            <select id="genre" name="genre" onChange={e => this.setGenres(e.target.value)}>
+              <option value="">All</option>
+              <option value="action">Action</option>
+              <option value="arcade">Arcade</option>
+              <option value="card">Card</option>
+              <option value="casual">Casual</option>
+              <option value="puzzle">Puzzle</option>
+              <option value="strategy">Strategy</option>
+            </select> 
+
+            <br/>
 
             <label htmlFor="sort">Sort By: </label>
             <select id="sort" name="sort" onChange={e => this.setSort(e.target.value)}>
