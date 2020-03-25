@@ -48,7 +48,6 @@ class App extends Component {
     }
     const query = params.join('&');
     const url = `${baseUrl}?${query}`;
-    console.log(url)
 
     fetch(url)
       .then(res => {
