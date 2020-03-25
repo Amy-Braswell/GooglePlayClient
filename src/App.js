@@ -38,7 +38,7 @@ class App extends Component {
     const baseUrl = 'http://localhost:8000/apps';
     const params = [];
     if(this.state.genres) {
-      params.push(`genre=${this.state.genres}`);
+      params.push(`genres=${this.state.genres}`);
     }
     if(this.state.search) {
       params.push(`search=${this.state.search}`);
@@ -91,8 +91,8 @@ class App extends Component {
 
             <br/>
 
-            <label htmlFor="genre">Search by Genre: </label>
-            <select id="genre" name="genre" onChange={e => this.setGenres(e.target.value)}>
+            <label htmlFor="genres">Search by Genre: </label>
+            <select id="genres" name="genres" onChange={e => this.setGenres(e.target.value)}>
               <option value="">All</option>
               <option value="action">Action</option>
               <option value="arcade">Arcade</option>
