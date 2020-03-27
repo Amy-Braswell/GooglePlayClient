@@ -61,7 +61,6 @@ class App extends Component {
           apps: data,
           error: null
         });
-        console.log(data)
       })
       .catch(err => {
         this.setState({
